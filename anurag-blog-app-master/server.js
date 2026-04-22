@@ -14,11 +14,13 @@ config(); //process.env
 const app = exp();
 //use cors middleware
 app.use(cors({ 
-  origin: [
-    "http://localhost:5173",
-    "https://blog-final-vtwu.vercel.app",
-    "https://blog-final-vtwu-ipvo5rski-sudha-210705s-projects.vercel.app"
-  ], 
+  origin: function(origin, callback) {
+    if (!origin || origin.includes('vercel.app') || origin === 'http://localhost:5173') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true 
 }));
 app.use(exp.json());
