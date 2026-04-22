@@ -13,7 +13,14 @@ config(); //process.env
 //Create express application
 const app = exp();
 //use cors middleware
-app.use(cors({ origin: ["http://localhost:5173","https://blog-final-vtwu.vercel.app"], credentials: true }));//add body parser middleware
+app.use(cors({ 
+  origin: [
+    "http://localhost:5173",
+    "https://blog-final-vtwu.vercel.app",
+    "https://blog-final-vtwu-ipvo5rski-sudha-210705s-projects.vercel.app"
+  ], 
+  credentials: true 
+}));
 app.use(exp.json());
 //add cookie parser middleware
 app.use(cookieParser());
